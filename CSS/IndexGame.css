@@ -1,0 +1,557 @@
+@import url('../Fonts/A_Lolita_Scorned.ttf');
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    position: relative;
+}
+
+.main {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 1rem;
+
+    padding: 0 3rem 3rem 3rem;
+    background: transparent;
+}
+
+@media screen and (max-width: 413px) {
+    .main {
+        padding: 1rem;
+    }
+}
+
+.headerMain h1{
+    text-align: center;
+    padding: 1rem 0;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px black;
+}
+
+.navMain {
+    text-align: end;
+    padding-bottom: 1rem;
+}
+
+.navMain ul li {
+    font-size: 1.5em;
+    color: rgb(0, 0, 131);
+}
+
+.navMain ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navMain ul li:first-child {
+    margin-right: 1.5rem;
+}
+
+.navMain ul li i {
+    transition: 0.3s all ease-in-out;
+}
+.navMain ul li i:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+.mainMenu {
+    display: none;
+    position: fixed;
+    width: 70%;
+    max-width: 531px;
+    height: 70%;
+    max-height: 640px;
+    margin-top: 50vh;
+    transform: translateY(-50%);
+
+    background: rgba(0, 0, 0, 0.664);
+    color: white;
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 15px black;
+    z-index: 1000;
+    border: 3px solid rgba(255, 255, 255, 0.445);
+}
+
+.mainMenu h2 {
+    margin-top: 3rem;
+    text-align: center;
+    color: rgb(253, 253, 253);
+}
+
+.formColor {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    font-size: 1.4em;
+    margin-top: 3rem;
+}
+
+.formColor input {
+    opacity: 0;
+    z-index: -100;
+}
+
+.changeColor {
+    margin-left: 1rem;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background: #577e5b;
+    cursor: pointer;
+}
+
+.closing {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.507);
+    z-index: 100;
+    display: none;
+}
+
+.containerWords {
+    width: 100%;
+    position: relative;
+    transition: all ease-in-out 0.2s;
+}
+
+.between-key {
+    font-size: 1.5em;
+    color: rgba(253, 253, 253, 0.904);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    width: 100%;
+}
+
+#cWord, #cTip, #cAnswer, .confirm {
+    margin: 0.5rem 0.5rem 0 0;
+    width: 100%;
+    max-width: 355px;
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.671);
+    border-bottom: 3px solid rgba(246, 246, 246, 0.274);
+    padding: 0.4rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    border-radius: 0.3rem;
+
+    background: transparent;
+    transition: 0.3s all ease-in-out;
+}
+
+#cAnswer {
+    width: 100%;
+    margin: 2rem 0 0 0;
+    text-align: center;
+    border: 3px solid rgba(246, 246, 246, 0.274);
+    max-width: 100%;
+}
+
+#cAnswer:focus {
+    background: linear-gradient(45deg, rgba(82, 148, 51, 0.589), rgb(70, 243, 122, 0.589));
+    border-color: transparent;
+}
+
+#cAnswer::placeholder {
+    color: rgba(209, 212, 2, 0.555);
+    /* text-align: left; */
+}
+
+#cWord::placeholder, #cTip::placeholder {
+    color: rgba(255, 255, 255, 0.466);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: .9em;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+.confirm {
+    border: 3px solid rgba(246, 246, 246, 0.274);
+
+    max-width: 100px;
+    color: rgba(255, 255, 255, 0.699);
+    
+    transition: 0.3s all ease-in-out;
+    margin-bottom: 2rem;
+}
+
+.confirm:hover {
+    background: rgba(0, 0, 0, 0.089);
+}
+
+.confirm:hover {
+    cursor: pointer;
+}
+
+.confirm:active {
+    transition: none;
+    background:rgba(0, 0, 0, 0.438);
+}
+
+.blue {
+    color: rgb(41, 41, 41);
+    text-shadow: 1px 1px 1px rgb(233, 233, 233);
+}
+
+.center {
+    text-align: center;
+}
+
+.containerResultsAndImages {
+    position: relative;
+    width: 100%;
+
+    margin-top: 1rem;
+}
+
+.containerResults {
+    position: absolute;
+    display: none;
+    right: 0;
+    margin-top: 100px;
+}
+
+.spanResult {
+    border-bottom: 2px solid rgb(63, 189, 5);
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 1.4em;
+}
+
+.incorrectResult, .result {
+    color: white;
+    width: 240px;
+    margin-top: .8rem;
+    letter-spacing: 1px;
+    font-size: 1.05em;
+    font-weight: 900;
+}
+
+.incorrectResult span {
+    text-transform: uppercase;
+}
+
+#letter {
+    padding: 0 10px;
+    margin-right: 4px;
+    border-bottom: 2px solid rgb(63, 189, 5);
+    font-weight: 900;
+}
+
+.containerImages {
+    width: 100%;
+    max-width: 300px;
+    height: 400px;
+    position: relative;
+}
+
+.imageGame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    object-fit: cover;
+    z-index: 1;
+}
+
+.frontImage {
+    opacity: 1;
+}
+
+.containerDeathImage {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    right: 15px;
+
+    user-select: none;
+
+    /* transition: all ease-in-out 1s; */
+}
+
+.deathImage {
+    height: 100%;
+    position: relative;
+    max-width: 474px;
+    width: 100%;
+    z-index: -1;
+
+    object-fit: cover;
+}
+
+.deathImageLegend div{
+    position: absolute;
+    top: 0;
+}
+
+.deathImageLegend p {
+    position: absolute;
+    bottom: 5rem;
+    white-space: nowrap;
+    z-index: 103;
+    font-size: 6em;
+    color: rgb(255, 0, 0);
+
+    font-family: 'A Lolita Scorned', sans-serif;
+}
+
+.containerGif {
+    width: 100%;
+    display: none;
+}
+
+.containerGif img {
+    position: absolute;
+    top: 0;
+    z-index: 101;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px black;
+}
+
+.closeImage {
+    z-index: 102;
+    color: white;
+    position: absolute;
+    float: right;
+    right: 0;
+    padding: 0.6rem;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+.playAgain {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+
+    padding: 1rem;
+    background: transparent;
+    box-shadow: 1px 1px 9px black;
+    border-radius: .2rem;
+    width: 200px;
+    text-align: center;
+
+    cursor: pointer;
+    transition: 0.1s all ease-in-out;
+    display: none;
+}
+
+.playAgain:hover {
+    background: rgba(251, 251, 251, 0.157);
+}
+
+.playAgain p {
+    font-size: 1.2em;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #54ff35;
+    user-select: none;
+}
+
+.deleted {
+    display: none;
+}
+
+.totalTips {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+
+    border: 1px solid rgb(9, 126, 204);
+    border-radius: 2px;   
+    padding: .3rem;
+    background: linear-gradient(45deg, rgb(0, 181, 253), rgb(9, 126, 204));
+
+    cursor: pointer;
+
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 1em;
+
+    transition: 0.2s all ease-in-out;
+}
+
+.containerShowTips {
+    margin-top: 2rem;
+    max-width: 100%;
+}
+
+.containerShowTips p{
+    color: rgb(0, 73, 73);
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+[aria-label] {
+    position: relative;
+}
+
+[arial-label]::after {
+    content: attr(aria-label);
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0px;
+    height: 10px;
+    z-index: 5000;
+    pointer-events: none;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-size: .9em;
+    color: #fff;
+    background-color: #412917;
+}
+
+[aria-label]:hover::after {
+    display: block;
+}
+
+.confirmWord {
+    max-width: 200px;
+    margin-bottom: 0;
+}
+
+.formAnswerComplete {
+    text-align: center;
+    display: none;
+}
+
+.containerConfirmWord {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%) translateY(-50%);
+
+    max-width: 220px;
+    text-align: center;
+    z-index: 600;
+}
+
+.containerConfirmWord p:first-child {
+    color: white;
+    font-size: 1.5em;
+}
+
+.showConfirmWord {
+    font-size: 1.7em;
+    text-transform: uppercase;
+    color: rgb(127, 224, 0);
+    text-shadow: 1px 1px 2px black;
+}
+
+.infoFooter {
+    margin: 1.4rem 0 0.4rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoFooter a {
+    margin: 0 1rem;
+}
+
+.infoFooter a i{
+    font-size: 32pt;
+    color: #3155ce;
+    transition: 0.1s all ease;
+}
+
+.infoFooter a i:hover {
+    color: #14214d;
+}
+
+footer p {
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 1005px) {
+    .containerDeathImage {
+        right: -100px;
+    }
+}
+
+@media only screen and (max-width: 683px) {
+    .containerWords {
+        text-align: center;
+        font-size: 1em;
+    }
+
+    .deathImageLegend p {
+        font-size: 3em;
+    }
+
+    #cWord, #cTip {
+        width: 100%;
+        max-width: none;
+    }
+
+    .containerGif img {
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .containerResults {
+        text-align: center;
+        position: relative;
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+
+    .incorrectResult {
+        width: 100%;
+    }
+
+    .playAgain {
+        position: relative;
+        margin: 3rem auto 0 auto;
+    }
+
+    .main {
+        border-radius: 0;    
+    }
+
+    .totalTips {
+        left: 50%;
+        transform: translateX(-50%);
+        top: auto;
+        bottom: -1rem;
+        position: absolute;
+    }
+
+    .totalTips:hover {
+        transform: translateX(-50%) scaleX(1.1);
+        border: 1px solid rgb(253, 253, 253);
+    }
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+
+    <link rel="shortcut icon" href="Imagens/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <!-- Add links for CSS -->
+    <link rel="stylesheet" href="CSS/reset.css" >
+    <link rel="stylesheet" href="CSS/IndexGame.css">
+
+    <!-- Add link for JavaScript -->
+    <script src="Scripts/indexGame.js"></script>
+
+    <!-- Add link for Font Awesome-->
+    <script src="https://kit.fontawesome.com/eabe1a9aa0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="closing" onclick="closing()"></div>
+
+    <nav class="mainMenu">
+        <div class="closeImage" onclick="closing()">
+            <i class="far fa-times-circle"></i>
+        </div>
+
+        <h2><i>CONFIGURATIONS</i></h2>
+
+        <form class="formColor">
+            <label for="cColor">
+                <p>Backgroud color: 
+                    <span class="changeColor"></span>
+                </p>
+            </label>
+
+            <input type="color" 
+            name="tColor" 
+            id="cColor"
+            onchange="changeColor()">
+        </form>
+    </nav>
+
+    <main class="main">
+        <header class="headerMain">
+            <h1>Hangman Game</h1>
+            <nav class="navMain">
+                <ul class="iconsUl">
+                    <li>
+                        <i class="fas fa-volume-mute volumeMute"
+                        onclick="sound('mute')"
+                        style="display: none;"></i>
+
+                        <i class="fas fa-volume-up volumeUp"
+                        onclick="sound('break')"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-cog"
+                        onclick="showMainMenu()"></i>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+            <article>
+                <div class="containerWords">
+                    <div class="containerForm">
+                        <p class="between-key">Enter a word:</p>
+                        <form class="containerInput">
+                            <input type="text"
+                            name="tWord"
+                            id="cWord"
+                            placeholder="Animal, object, fruit, etc"
+                            autofocus
+                            autocomplete="off"
+                            aria-label="Enter a word for a colleague to guess"
+                            onkeydown="enterVerify('confirmWord')">
+
+                            <input type="text" class="deleted"> <!--Gambiarra-->
+
+                            <br class="br">
+
+                            <input type="text"
+                            title="Max Tips: 5"
+                            name="tTip"
+                            id="cTip"
+                            placeholder="Add your tip here (Optional)"
+                            autocomplete="off"
+                            onkeyup="enterVerify('tips')">
+
+                            <button type="button"
+                            title="Add tip"
+                            class="confirm addTips"
+                            onclick="addTips()">
+                            Add TIP 
+                            </button>
+
+                            <button type="button"
+                            class="confirm"
+                            id="confirm"
+                            title="Confirm the word and tips"
+                            onclick="confirmWord()">
+                                OK
+                            </button>
+
+                            <button type="button" 
+                            class="totalTips"
+                            title="Click for tips"
+                            onclick="showTips()"
+                            disabled>
+                            <p>Tips: <span>0</span></p>
+                        </button>
+                        </form>
+                    </div>
+                    <figure class="containerGif">
+                        <img src="Imagens/gifs/tenor.gif" alt="Congratulations!">
+                        <figcaption class="closeImage" onclick="closing()">
+                            <i class="far fa-times-circle"></i>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="containerShowTips">
+                    <p></p>
+                </div>
+
+                <div class="containerResultsAndImages">
+                    <div class="containerResults">
+                        <span class="result"></span>
+                        <span class="spanResult"></span>
+
+                        <p class="incorrectResult">Incorrect: <span></span></p>
+                    </div>
+
+                    <div class="containerImages">
+                        <figure>
+                            <img src="Imagens/game/base-forca.png" 
+                            alt="Base of hang" 
+                            class="imageGame frontImage">
+                            <img src="Imagens/game/1-forca.png" alt="" class="imageGame">
+                            <img src="Imagens/game/2-forca.png" alt="" class="imageGame">
+                            <img src="Imagens/game/3-forca.png" alt="" class="imageGame">
+                            <img src="Imagens/game/4-forca.png" alt="" class="imageGame">
+                            <img src="Imagens/game/5-forca.png" alt="" class="imageGame">
+                            <img src="Imagens/game/6-forca.png" alt="" class="imageGame">
+                        </figure>
+                    </div>
+
+                    <figure class="containerDeathImage">
+                        <img src="Imagens/game/morte.png"
+                        alt="You Death"
+                        class="deathImage">
+
+                        <figcaption class="deathImageLegend">
+                            <p>You Die</p>
+                            <div class="closeImage" onclick="closing()">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                        </figcaption>
+                    </figure>
+
+                    <form class="containerCompleteAnswer">
+                        
+                    </form>
+                </div>
+
+                <div class="playAgain" onclick="playAgain()">
+                    <p>Play Again</p>
+                </div>
+
+                <div class="containerFormAnswerComplete">
+                    <form class="formAnswerComplete" novalidate>
+                        <input type="text" 
+                        name="tAnswer" 
+                        id="cAnswer"
+                        placeholder="If you are sure of the answer put it here"
+                        autocomplete="off"
+                        onkeydown="enterVerify('answerComplete')">
+                        <input type="text" class="deleted"> <!--Gambiarra-->
+                        <button type="button"
+                        class="confirm confirmWord"
+                        onclick="confirmAnswerComplete()">
+                            Confirm word
+                        </button>
+                    </form>
+
+                    <div class="containerConfirmWord">
+                        <p>This word is correct?</p>
+                        <p class="showConfirmWord"></p>
+
+                        <button type="button"
+                        class="confirm yesConfirmWord"
+                        onclick="answerComplete()">Yes</button>
+                        <button type="button"
+                        class="confirm noConfirmWord"
+                        onclick="closing(false)">No</button>
+                    </div>
+                </div>
+
+            </article>
+        </section>
+
+        <footer>
+            <div class="infoFooter">
+                <a href="https://www.linkedin.com/in/luiz-thiago-096718206/"
+                target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/yProMix"
+                target="_blank">
+                    <i class="fab fa-github-square"></i>
+                </a>
+            </div>
+            <p>&copy; Luiz Thiago</p>
+        </footer>
+    </main>
+
+</body>
+
+</html>
