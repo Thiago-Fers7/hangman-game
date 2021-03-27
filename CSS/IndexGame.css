@@ -41,7 +41,9 @@ article {
 
 .navMain ul li {
     font-size: 1.5em;
-    color: rgb(0, 0, 131);
+    color: #54ff35;
+    margin-right: 1.5rem;
+    word-wrap: break-word;
 }
 
 .navMain ul {
@@ -49,10 +51,7 @@ article {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-}
-
-.navMain ul li:first-child {
-    margin-right: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .navMain ul li i {
@@ -71,22 +70,25 @@ article {
     max-width: 531px;
     height: 70%;
     max-height: 640px;
-    margin-top: 50vh;
-    transform: translateY(-50%);
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-    background: rgba(0, 0, 0, 0.664);
+    background: rgb(56, 141, 167);
     color: white;
     padding: 0 1rem 1rem 1rem;
     border-radius: 0.3rem;
-    box-shadow: 0 0 15px black;
     z-index: 1000;
-    border: 3px solid rgba(255, 255, 255, 0.445);
 }
 
 .mainMenu h2 {
     margin-top: 3rem;
     text-align: center;
     color: rgb(253, 253, 253);
+    text-shadow: 1px 1px 2px white;
+    font-size: 2em;
+    letter-spacing: 2px;
 }
 
 .formColor {
@@ -111,6 +113,57 @@ article {
     border: 1px solid white;
     background: #577e5b;
     cursor: pointer;
+}
+
+.containerReset {
+    position: absolute;
+    bottom: 2rem;
+    left: 5%;
+    width: 90%;
+    height: 50px;
+}
+
+.reset {
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    background: rgba(128, 255, 0, 0);
+    cursor: pointer;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    background: transparent;
+    font-size: 1.5em;
+}
+
+.animationButton::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0);
+}
+
+.animationButton::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background: linear-gradient(45deg, rgb(77, 43, 156), rgb(10, 46, 163));
+    transform: scaleX(0);
+    transition: all ease 0.3s;
+    transform-origin: center;
+}
+
+.reset:hover ~ .animationButton::after {
+    transform: scaleX(1);
 }
 
 .closing {
@@ -206,7 +259,7 @@ article {
 }
 
 .blue {
-    color: rgb(41, 41, 41);
+    color: rgb(255, 255, 255);
     text-shadow: 1px 1px 1px rgb(233, 233, 233);
 }
 
@@ -400,7 +453,7 @@ article {
 }
 
 .containerShowTips p{
-    color: rgb(0, 73, 73);
+    color: rgb(255, 255, 255);
     letter-spacing: 1px;
     font-size: 1.2em;
     font-weight: 400;
@@ -495,12 +548,6 @@ footer p {
     font-weight: 500;
 }
 
-@media screen and (min-width: 1005px) {
-    .containerDeathImage {
-        right: -100px;
-    }
-}
-
 @media only screen and (max-width: 683px) {
     .containerWords {
         text-align: center;
@@ -553,5 +600,24 @@ footer p {
     .totalTips:hover {
         transform: translateX(-50%) scaleX(1.1);
         border: 1px solid rgb(253, 253, 253);
+    }
+}
+
+@media screen and (max-height: 369px) {
+    .mainMenu h2 {
+        font-size: 1em;
+    }
+
+    .formColor {
+        font-size: 1em;
+        margin-top: 1rem;
+    }
+
+    .containerReset {
+        height: 20px;
+    }
+
+    .reset {
+        font-size: 100%;
     }
 }

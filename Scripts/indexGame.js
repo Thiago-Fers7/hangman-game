@@ -6,7 +6,6 @@ let lettersBetween = []
 let letter
 let cont = 0, cont1 = 0 // Counters
 let statusSound = 'play'
-let showPlayAgain = true
 
 const confirmWord = () => {
     let betweenKey = document.querySelector('.between-key')
@@ -14,7 +13,7 @@ const confirmWord = () => {
 
     // Checking the entry length
     if (text.value.length < 3) {
-        text.style.background = 'url(../Imagens/icons/exclamation-solid.png) no-repeat 95%/0.6rem'
+        text.style.background = 'url(../images/icons/exclamation-solid.png) no-repeat 95%/0.6rem'
         text.focus()
         return
     } else {
@@ -112,8 +111,22 @@ const correctLetterOrWord = (correctWord) => {
         containerGif.style.display = 'block'
         closing.style.display = 'block'
         containerFormAnswerComp.style.display = 'none'
+        document.querySelector('.playAgain').style.display = 'block'
+
+        let totalVictories = Number(localStorage.totalVictories)
+        if (!totalVictories) {
+            totalVictories = 0
+        }
+        localStorage.setItem('totalVictories', totalVictories += 1)
+        numberOfVictoriesAndBg()
     }
 }
+
+const numberOfVictoriesAndBg = () => {
+    document.querySelector('.totalVictories').textContent = localStorage.totalVictories
+}
+
+addEventListener('load', numberOfVictoriesAndBg)
 
 // Handling DOM for the incorrect letter or word
 const incorrectLetterOrWord = (fail) => {
@@ -126,6 +139,7 @@ const incorrectLetterOrWord = (fail) => {
     let closing = document.querySelector('.closing')
 
     if (cont == 5 || fail == 'fail') {
+        document.querySelector('.playAgain').style.display = 'block'
         document.querySelector('.containerDeathImage').style.display = 'block'
         document.querySelector('.deathImage').style.zIndex = '102'
         document.querySelector('.result').textContent = `This was the word: `
@@ -157,7 +171,7 @@ const confirmLetter = () => {
     let textValue = text.value.toLowerCase()
     // Add the "!" icon if there is no letter
     if (textValue == '') {
-        text.style.background = 'url(../Imagens/icons/exclamation-solid.png) no-repeat 99%/0.6rem'
+        text.style.background = 'url(../images/icons/exclamation-solid.png) no-repeat 99%/0.6rem'
         text.focus()
         return
     }
@@ -191,11 +205,6 @@ const closing = (noShow) => {
     document.querySelector('.deathImage').style.zIndex = '0'
     document.querySelector('.mainMenu').style.display = 'none'
     document.querySelector('.containerConfirmWord').style.display = 'none'
-    if (showPlayAgain && noShow != false) {
-        document.querySelector('.playAgain').style.display = 'block'
-    } else {
-        showPlayAgain = true
-    }
 }
 
 // Reload the page
@@ -293,7 +302,7 @@ const answerComplete = () => {
 
     let correctWord = formatedAnswer == completeText
     if (correctWord) {
-        document.querySelector('#letter').remove()
+        // document.querySelector('#letter').remove()
         document.querySelector('.result').textContent = `Result: `
         document.querySelector('.spanResult').textContent = `${formatedAnswer}`
         correctLetterOrWord(correctWord)
@@ -303,39 +312,43 @@ const answerComplete = () => {
 }
 
 // Muted song by icon on diplay (user decides)
-const sound = (mute) => {
+const sound = (muted) => {
     let volumeMute = document.querySelector('.volumeMute')
     let volumeUp = document.querySelector('.volumeUp')
-    
-    if (mute == "mute") {
+
+    localStorage.setItem('sound', muted)
+
+    if (localStorage.sound == "play") {
         volumeMute.style.display = 'none'
         volumeUp.style.display = 'block'
-        statusSound = 'play'
+        statusSound = localStorage.sound
     } else {
         volumeMute.style.display = 'block'
         volumeUp.style.display = 'none'
-        statusSound = 'break'
+        statusSound = localStorage.sound
     }
 }
 
 // Simple menu
 const showMainMenu = () => {
-    showPlayAgain = false
-    let mainMenu = document.querySelector('.mainMenu')
-    mainMenu.style.display = 'block'
-    let closing = document.querySelector('.closing')
-    closing.style.display = 'block'
+    document.querySelector('.mainMenu').style.display = 'block'
+    document.querySelector('.closing').style.display = 'block'
 }
 
-const changeColor = (original) => {
-    let color = document.querySelector('#cColor')
+const changeColor = (originalColor) => {
+    let color = localStorage.color
     let shown = document.querySelector('.changeColor')
-
-    if (original == 'originalColor') {
-        shown.style.background = '#577e5b'
-        document.body.style.background = '#577e5b'
-    } else {
-        document.body.style.background = color.value
-        shown.style.background = color.value
+    
+    if (color == undefined || originalColor == 'originalColor') {
+        shown.style.background = 'linear-gradient(45deg, rgb(68, 92, 148), rgb(7, 13, 38)), repeat'
+        document.body.style.background = 'linear-gradient(45deg, rgb(68, 92, 148), rgb(7, 13, 38)), repeat'
+        localStorage.setItem('color', 'linear-gradient(45deg, rgb(68, 92, 148), rgb(7, 13, 38)), repeat')
+    } else if (originalColor == 'edit') {
+        color = document.querySelector('#cColor').value
+        localStorage.setItem('color', color)
     }
+
+    document.body.style.background = localStorage.color
+    shown.style.background = localStorage.color
+
 }

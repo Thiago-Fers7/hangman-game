@@ -20,6 +20,3 @@ To start the project you will need to write this following line in the terminal
 
 ## Author
 * Luiz Thiago F. dos Santos - [Github](https://github.com/Thiago-Fers7) and [LinkedIn](https://www.linkedin.com/in/luiz-thiago-096718206/)
-
-![Foodfy gif](https://github.com/RicardoSobral-7/foodfy/blob/master/foodfy.gif)
-![Foodfy Admin gif](https://github.com/RicardoSobral-7/foodfy/blob/master/foodfyAdmin.gif)

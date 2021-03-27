@@ -20,29 +20,38 @@
     <script src="https://kit.fontawesome.com/eabe1a9aa0.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <div class="closing" onclick="closing()"></div>
+<body onload="sound(localStorage.sound), changeColor()">
+    <header>
+        <div class="closing" onclick="closing()"></div>
+        <nav class="mainMenu">
+            <div class="closeImage" onclick="closing()">
+                <i class="far fa-times-circle"></i>
+            </div>
 
-    <nav class="mainMenu">
-        <div class="closeImage" onclick="closing()">
-            <i class="far fa-times-circle"></i>
-        </div>
+            <h2><i>CONFIGURATIONS</i></h2>
 
-        <h2><i>CONFIGURATIONS</i></h2>
+            <form class="formColor">
+                <label for="cColor">
+                    <p>Backgroud color:
+                        <span class="changeColor"></span>
+                    </p>
+                </label>
 
-        <form class="formColor">
-            <label for="cColor">
-                <p>Backgroud color: 
-                    <span class="changeColor"></span>
-                </p>
-            </label>
-
-            <input type="color" 
-            name="tColor" 
-            id="cColor"
-            onchange="changeColor()">
-        </form>
-    </nav>
+                <input type="color"
+                name="tColor"
+                id="cColor"
+                onchange="changeColor('edit')">                
+            </form>
+            
+            <div class="containerReset">
+                <button type="button" 
+                class="reset"
+                onclick="changeColor('originalColor')">RESET</button>
+                
+                <div class="animationButton"></div>
+            </div>
+        </nav>
+    </header>
 
     <main class="main">
         <header class="headerMain">
@@ -50,12 +59,15 @@
             <nav class="navMain">
                 <ul class="iconsUl">
                     <li>
+                        <p>Victories: <span class="totalVictories"></span></p>
+                    </li>
+                    <li>
                         <i class="fas fa-volume-mute volumeMute"
-                        onclick="sound('mute')"
+                        onclick="sound('play')"
                         style="display: none;"></i>
 
                         <i class="fas fa-volume-up volumeUp"
-                        onclick="sound('break')"></i>
+                        onclick="sound('muted')"></i>
                     </li>
                     <li>
                         <i class="fas fa-cog"
@@ -197,10 +209,9 @@
                         onclick="answerComplete()">Yes</button>
                         <button type="button"
                         class="confirm noConfirmWord"
-                        onclick="closing(false)">No</button>
+                        onclick="closing()">No</button>
                     </div>
                 </div>
-
             </article>
         </section>
 
