@@ -1,17 +1,14 @@
 # Foodfy
- A concept of a recipes site
+ A hangman-game
 ## Prerequisites
 To download this project you will need to install some things like:
 * [Visual Studio Code](https://code.visualstudio.com/download)
-* [Node.js](https://nodejs.org/en/)
 * [gitBash](https://gitforwindows.org/) recommended
 
 ## How to launch
 To start the project you will need to write this following line in the terminal
-* npm install
-* npm start
-* the project will be at door 3000, so open the browser and write
-* http://localhost:3000/
+* cd ~/directory-of-archive/ - exemple: cd ~/Documents/hangman-game
+* start index.html
 
 ## Built with
 * HTML
