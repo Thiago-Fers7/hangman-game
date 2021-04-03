@@ -1,5 +1,5 @@
-# Foodfy
- A hangman-game with saving some status in localStorage
+# Hangman Game
+ A hangman game with saving some status in localStorage
 ## Prerequisites
 To download this project you will need to install some things like:
 * [Visual Studio Code](https://code.visualstudio.com/download)
